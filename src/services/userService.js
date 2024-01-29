@@ -16,3 +16,11 @@ exports.createUser = (email, password) => {
         }
     })
 }
+
+exports.getUserById = (id) => {
+    return prisma.user.findFirst({
+        where: {
+            id
+        }
+    })
+}

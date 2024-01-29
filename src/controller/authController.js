@@ -1,6 +1,7 @@
 const createError = require('../utils/createError')
 const userService = require('../services/userService')
 const bcrypts = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 exports.register = async (req, res, next) => {
     try {
@@ -18,6 +19,31 @@ exports.register = async (req, res, next) => {
         await userService.createUser(email, hashPassword)
 
         res.json({ message: 'Register Success' })
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.login = async (req, res, next) => {
+    try {
+        const { email, password } = req.body
+        if (!email || !password || typeof email !== 'string' || typeof password !== 'string') {
+            return createError(400, 'Email or Password are invalid')
+        }
+
+        const isUserExist = await userService.getUserByEmail(email)
+        if (!isUserExist) {
+            return createError(400, 'Email or Password are invalid')
+        }
+
+        const isPasswordMatch = await bcrypts.compare(password, isUserExist.password)
+        if (!isPasswordMatch) {
+            return createError(400, 'Email or Password are invalid')
+        }
+
+        const token = jwt.sign({ id: isUserExist.id }, process.env.SECRET_KEY, { expiresIn: process.env.EXPIRES_KEY })
+        res.json({ token })
 
     } catch (error) {
         next(error)

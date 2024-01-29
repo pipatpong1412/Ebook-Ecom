@@ -4,6 +4,7 @@ const cors = require('cors')
 const errorHandler = require('./src/middlewares/error')
 const notFoundHandler = require('./src/middlewares/notFound')
 const authRoute = require('./src/routes/authRoute')
+const authenticate = require('./src/middlewares/authenticate')
 const app = express()
 const PORT = process.env.PORT
 
