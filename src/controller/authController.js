@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 exports.register = async (req, res, next) => {
     try {
-        const { email, password } = req.body
+        const { name, email, password } = req.body
         if (!email || !password || typeof email !== 'string' || typeof password !== 'string') {
             return createError(400, 'Email or Password are invalid')
         }
@@ -16,7 +16,7 @@ exports.register = async (req, res, next) => {
         }
 
         const hashPassword = await bcrypts.hash(password, 10)
-        await userService.createUser(email, hashPassword)
+        await userService.createUser(name, email, hashPassword)
 
         res.json({ message: 'Register Success' })
 

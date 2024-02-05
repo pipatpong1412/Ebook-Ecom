@@ -8,9 +8,10 @@ exports.getUserByEmail = (email) => {
     })
 }
 
-exports.createUser = (email, password) => {
+exports.createUser = (name, email, password) => {
     return prisma.user.create({
         data: {
+            name,
             email,
             password
         }
