@@ -1,12 +1,9 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
@@ -16,21 +13,21 @@ enum Role {
 }
 
 model Search {
-  id          Int           @id @default(autoincrement())
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   user_search User_Search[]
 }
 
 model User_Search {
-  id       Int    @id @default(autoincrement())
-  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId   Int    @map("user_id")
-  search   Search @relation(fields: [searchId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  searchId Int    @map("search_id")
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
+  user     User   @relation(fields: [userId], references: [id])
+  userId   String @map("user_id") @db.ObjectId
+  search   Search @relation(fields: [searchId], references: [id])
+  searchId String @map("search_id") @db.ObjectId
 }
 
 model User {
-  id          Int           @id @default(autoincrement())
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
   role        Role          @default(USER)
   name        String?
   password    String
@@ -43,65 +40,66 @@ model User {
 }
 
 model Cart {
-  id      Int      @id @default(autoincrement())
+  id      String   @id @default(auto()) @map("_id") @db.ObjectId
   total   Int      @default(0)
   Payment Payment?
-  user    User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId  Int      @unique @map("user_id")
+  user    User     @relation(fields: [userId], references: [id])
+  userId  String   @unique @map("user_id") @db.ObjectId
 }
 
 model Payment {
-  id       Int      @id @default(autoincrement())
+  id       String   @id @default(auto()) @map("_id") @db.ObjectId
   method   String
   createAt DateTime @default(now()) @map("create_at")
-  cart     Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  cartId   Int      @unique @map("cart_id")
+  cart     Cart     @relation(fields: [cartId], references: [id])
+  cartId   String   @unique @map("cart_id") @db.ObjectId
 }
 
 model Shelf {
-  id            Int          @id @default(autoincrement())
-  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId        Int          @unique @map("user_id")
-  paid_product  Paid_Product @relation(fields: [paidProductId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  paidProductId Int          @map("paid_product_id")
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  user          User         @relation(fields: [userId], references: [id])
+  userId        String       @unique @map("user_id") @db.ObjectId
+  paid_product  Paid_Product @relation(fields: [paidProductId], references: [id])
+  paidProductId String       @map("paid_product_id") @db.ObjectId
 }
 
 model Paid_Product {
-  id    Int     @id @default(autoincrement())
-  url   Url     @relation(fields: [urlId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  urlId Int     @unique @map("url_id")
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  url   Url     @relation(fields: [urlId], references: [id])
+  urlId String  @unique @map("url_id") @db.ObjectId
   shelf Shelf[]
 }
 
 model Url {
-  id           Int           @id @default(autoincrement())
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
   link         String
   paid_product Paid_Product?
 }
 
 model Cart_Product {
-  id        Int     @id @default(autoincrement())
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
   quantity  Int     @default(1)
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  productId Int     @map("product_id")
+  product   Product @relation(fields: [productId], references: [id])
+  productId String  @map("product_id") @db.ObjectId
 }
 
 model Product {
-  id             Int              @id @default(autoincrement())
+  id             String           @id @default(auto()) @map("_id") @db.ObjectId
   name           String
   img            String
+  detail         String
   price          Int
   author         String
   publisher      String
-  category       Category         @relation(fields: [categoryId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  categoryId     Int              @map("category_id")
+  category       Category         @relation(fields: [categoryId], references: [id])
+  categoryId     String           @map("category_id") @db.ObjectId
   cart_product   Cart_Product[]
   product_status Product_Status[]
   order_Product  Order_Product[]
 }
 
 model Category {
-  id      Int       @id @default(autoincrement())
+  id      String    @id @default(auto()) @map("_id") @db.ObjectId
   name    String
   product Product[]
 }
@@ -113,25 +111,25 @@ enum ProductStatus {
 }
 
 model Product_Status {
-  id        Int           @id @default(autoincrement())
+  id        String        @id @default(auto()) @map("_id") @db.ObjectId
   status    ProductStatus @default(UNPAID)
-  product   Product       @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  productId Int           @map("product_id")
+  product   Product       @relation(fields: [productId], references: [id])
+  productId String        @map("product_id") @db.ObjectId
 }
 
 model Order {
-  id            Int             @id @default(autoincrement())
+  id            String          @id @default(auto()) @map("_id") @db.ObjectId
   total         Int             @default(0)
   createAt      DateTime        @default(now()) @map("create_at")
-  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId        Int             @map("user_id")
+  user          User            @relation(fields: [userId], references: [id])
+  userId        String          @map("user_id") @db.ObjectId
   order_Product Order_Product[]
 }
 
 model Order_Product {
-  id        Int     @id @default(autoincrement())
-  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  orderId   Int     @map("order_id")
-  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  productId Int     @map("product_id")
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  order     Order   @relation(fields: [orderId], references: [id])
+  orderId   String  @map("order_id") @db.ObjectId
+  product   Product @relation(fields: [productId], references: [id])
+  productId String  @map("product_id") @db.ObjectId
 }
