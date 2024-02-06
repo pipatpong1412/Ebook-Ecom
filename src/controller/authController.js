@@ -2,7 +2,6 @@ const createError = require('../utils/createError')
 const userService = require('../services/userService')
 const bcrypts = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-const prisma = require('../config/prisma')
 
 exports.register = async (req, res, next) => {
     try {
