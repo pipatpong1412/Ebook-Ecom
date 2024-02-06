@@ -2,6 +2,7 @@ const createError = require('../utils/createError')
 const userService = require('../services/userService')
 const bcrypts = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const prisma = require('../config/prisma')
 
 exports.register = async (req, res, next) => {
     try {
@@ -45,6 +46,24 @@ exports.login = async (req, res, next) => {
         const token = jwt.sign({ id: isUserExist.id }, process.env.SECRET_KEY, { expiresIn: process.env.EXPIRES_KEY })
         res.json({ token })
 
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.getMe = async (req, res, next) => {
+    try {
+        const user = await prisma.user.findFirst({
+            where: {
+                id: req.user.id
+            }
+        })
+
+        if (!user) {
+            return createError(400, 'User does not exist')
+        }
+        delete user.password
+        res.json({ user })
     } catch (error) {
         next(error)
     }
