@@ -53,17 +53,8 @@ exports.login = async (req, res, next) => {
 
 exports.getMe = async (req, res, next) => {
     try {
-        const user = await prisma.user.findFirst({
-            where: {
-                id: req.user.id
-            }
-        })
-
-        if (!user) {
-            return createError(400, 'User does not exist')
-        }
-        delete user.password
-        res.json({ user })
+        res.json(req.user)
+        
     } catch (error) {
         next(error)
     }
