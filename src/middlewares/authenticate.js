@@ -16,7 +16,7 @@ const authenticate = async (req, res, next) => {
         }
 
         const payload = jwt.verify(token, process.env.SECRET_KEY)
-        if (typeof payload !== 'object' || !payload.id || typeof payload.id !== 'number') {
+        if (typeof payload !== 'object' || !payload.id || typeof payload.id !== 'string') {
             return createError(400, 'Payload not in correct format')
         }
 
