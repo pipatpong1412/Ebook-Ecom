@@ -11,3 +11,14 @@ exports.createCategory = (name) => {
         }
     })
 }
+
+exports.updateCategory = (id, name) => {
+    return prisma.category.update({
+        where:{
+            id
+        },
+        data : {
+            name
+        }
+    })
+}
