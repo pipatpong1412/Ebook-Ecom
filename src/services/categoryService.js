@@ -22,3 +22,11 @@ exports.updateCategory = (id, name) => {
         }
     })
 }
+
+exports.deleteCategory = (id) => {
+    return prisma.category.delete({
+        where: {
+            id
+        }
+    })
+}

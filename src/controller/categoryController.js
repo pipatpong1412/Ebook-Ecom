@@ -23,10 +23,22 @@ exports.creteCate = async (req, res, next) => {
 
 exports.updateCate = async (req, res, next) => {
     try {
-        const { id, name } = req.body
+        const { id } = req.params
+        const { name } = req.body
         const updateCategory = await categoryService.updateCategory(id, name)
         res.json(updateCategory)
 
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.deleteCate = async (req, res, next) => {
+    try {
+        const { id } = req.params
+        const deleteCategory = await categoryService.deleteCategory(id)
+        res.json(deleteCategory)
+        
     } catch (error) {
         next(error)
     }
