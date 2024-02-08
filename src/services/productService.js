@@ -10,7 +10,7 @@ exports.createProduct = (name, img, detail, price, author, publisher, categoryId
             name,
             img,
             detail,
-            price,
+            price: Number(price),
             author,
             publisher,
             categoryId
