@@ -7,5 +7,4 @@ router.post('/newCate', categoryController.creteCate)
 router.patch('/updateCate/:categotyId', categoryController.updateCate)
 router.delete('/del/:categoryId', categoryController.deleteCate)
 
-
 module.exports = router

@@ -18,11 +18,27 @@ exports.createProduct = (name, img, detail, price, author, publisher, categoryId
     })
 }
 
-
 exports.deleteProduct = (productId) => {
     return prisma.product.delete({
         where: {
             id: productId
+        }
+    })
+}
+
+exports.updateProduct = (productId, name, img, detail, price, author, publisher, categoryId) => {
+    return prisma.product.update({
+        where: {
+            id: productId
+        },
+        data: {
+            name,
+            img,
+            detail,
+            price: Number(price),
+            author,
+            publisher,
+            categoryId
         }
     })
 }

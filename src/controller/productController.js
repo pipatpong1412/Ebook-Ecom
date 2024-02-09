@@ -38,3 +38,16 @@ exports.deleteProduct = async (req, res, next) => {
         next(error)
     }
 }
+
+exports.updateProduct = async (req, res, next) => {
+    const {productId} = req.params
+    const { name, img, detail, price, author, publisher, categoryId } = req.body
+
+    try {
+        const product = await productService.updateProduct(productId, name, img, detail, price, author, publisher, categoryId)
+        res.json(product)
+
+    } catch (error) {
+        next(error)
+    }
+}
