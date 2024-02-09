@@ -25,3 +25,7 @@ exports.getUserById = (id) => {
         }
     })
 }
+
+exports.getAllUser = () => {
+    return prisma.user.findMany()
+}

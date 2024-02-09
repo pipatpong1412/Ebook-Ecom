@@ -58,3 +58,13 @@ exports.getMe = async (req, res, next) => {
         next(error)
     }
 }
+
+exports.getAllUser = async (req, res, next) => {
+    try {
+        const getUser = await userService.getAllUser()
+        res.json(getUser)
+
+    } catch (error) {
+        next(error)
+    }
+}
