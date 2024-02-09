@@ -4,7 +4,7 @@ exports.getAllProduct = () => {
     return prisma.product.findMany()
 }
 
-exports.createProduct = (name, img, detail, price, author, publisher, categoryId ) => {
+exports.createProduct = (name, img, detail, price, author, publisher, categoryId) => {
     return prisma.product.create({
         data: {
             name,
@@ -14,6 +14,15 @@ exports.createProduct = (name, img, detail, price, author, publisher, categoryId
             author,
             publisher,
             categoryId
+        }
+    })
+}
+
+
+exports.deleteProduct = (productId) => {
+    return prisma.product.delete({
+        where: {
+            id: productId
         }
     })
 }
