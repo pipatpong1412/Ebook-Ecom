@@ -12,21 +12,21 @@ exports.createCategory = (name) => {
     })
 }
 
-exports.updateCategory = (id, name) => {
+exports.updateCategory = (categoryId, name) => {
     return prisma.category.update({
-        where:{
-            id
+        where: {
+            id: categoryId
         },
-        data : {
+        data: {
             name
         }
     })
 }
 
-exports.deleteCategory = (id) => {
+exports.deleteCategory = (categoryId) => {
     return prisma.category.delete({
         where: {
-            id
+            id: categoryId
         }
     })
 }

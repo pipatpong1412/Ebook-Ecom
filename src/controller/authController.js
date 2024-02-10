@@ -53,7 +53,7 @@ exports.login = async (req, res, next) => {
 exports.getMe = async (req, res, next) => {
     try {
         res.json(req.user)
-        
+
     } catch (error) {
         next(error)
     }
@@ -63,6 +63,29 @@ exports.getAllUser = async (req, res, next) => {
     try {
         const getUser = await userService.getAllUser()
         res.json(getUser)
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.deleteUser = async (req, res, next) => {
+    try {
+        const { userId } = req.params
+        const deleteUser = await userService.deleteUesr(userId)
+        res.json(deleteUser)
+
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.updateRoleUser = async (req, res, next) => {
+    try {
+        const { userId } = req.params
+        const { userRole } = req.body
+        const updateUser = await userService.updateRole(userId, userRole)
+        res.json(updateUser)
 
     } catch (error) {
         next(error)

@@ -29,3 +29,22 @@ exports.getUserById = (id) => {
 exports.getAllUser = () => {
     return prisma.user.findMany()
 }
+
+exports.deleteUesr = (id) => {
+    return prisma.user.delete({
+        where: {
+            id
+        }
+    })
+}
+
+exports.updateRole = (id, role) => {
+    return prisma.user.update({
+        where: {
+            id
+        },
+        data: {
+            role
+        }
+    })
+}

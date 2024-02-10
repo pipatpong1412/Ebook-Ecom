@@ -10,7 +10,7 @@ exports.getAllCategory = async (req, res, next) => {
     }
 }
 
-exports.creteCate = async (req, res, next) => {
+exports.createCate = async (req, res, next) => {
     try {
         const { name } = req.body
         const category = await categoryService.createCategory(name)
@@ -23,9 +23,9 @@ exports.creteCate = async (req, res, next) => {
 
 exports.updateCate = async (req, res, next) => {
     try {
-        const { id } = req.params
+        const { categoryId } = req.params
         const { name } = req.body
-        const updateCategory = await categoryService.updateCategory(id, name)
+        const updateCategory = await categoryService.updateCategory(categoryId, name)
         res.json(updateCategory)
 
     } catch (error) {
@@ -35,8 +35,8 @@ exports.updateCate = async (req, res, next) => {
 
 exports.deleteCate = async (req, res, next) => {
     try {
-        const { id } = req.params
-        const deleteCategory = await categoryService.deleteCategory(id)
+        const { categoryId } = req.params
+        const deleteCategory = await categoryService.deleteCategory(categoryId)
         res.json(deleteCategory)
         
     } catch (error) {

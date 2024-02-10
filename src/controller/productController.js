@@ -40,7 +40,7 @@ exports.deleteProduct = async (req, res, next) => {
 }
 
 exports.updateProduct = async (req, res, next) => {
-    const {productId} = req.params
+    const { productId } = req.params
     const { name, img, detail, price, author, publisher, categoryId } = req.body
 
     try {
