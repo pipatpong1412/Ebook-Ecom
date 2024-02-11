@@ -83,8 +83,10 @@ exports.deleteUser = async (req, res, next) => {
 exports.updateRoleUser = async (req, res, next) => {
     try {
         const { userId } = req.params
-        const { userRole } = req.body
-        const updateUser = await userService.updateRole(userId, userRole)
+        const { role } = req.body
+
+        const updateUser = await userService.updateRole(userId, role)
+
         res.json(updateUser)
 
     } catch (error) {

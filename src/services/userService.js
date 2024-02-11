@@ -38,10 +38,10 @@ exports.deleteUesr = (id) => {
     })
 }
 
-exports.updateRole = (id, role) => {
+exports.updateRole = (userId, role) => {
     return prisma.user.update({
         where: {
-            id
+            id: userId
         },
         data: {
             role
