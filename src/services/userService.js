@@ -48,3 +48,16 @@ exports.updateRole = (userId, role) => {
         }
     })
 }
+
+exports.updateProfile = (userId, name, email, phone) => {
+    return prisma.user.update({
+        where: {
+            id: userId
+        },
+        data : {
+            name,
+            email,
+            phone
+        }
+    })
+}

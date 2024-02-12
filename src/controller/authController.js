@@ -93,3 +93,15 @@ exports.updateRoleUser = async (req, res, next) => {
         next(error)
     }
 }
+
+exports.updateProfile = async (req, res, next) => {
+    try {
+        const { userId } = req.params
+        const { name, phone, email } = req.body
+        const profile = await userService.updateProfile(userId, name, email, phone)
+
+        res.json(profile)
+    } catch (error) {
+        next(error)
+    }
+}
