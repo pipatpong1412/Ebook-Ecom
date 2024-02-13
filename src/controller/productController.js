@@ -11,7 +11,14 @@ exports.getAllProduct = async (req, res, next) => {
 }
 
 exports.getProductById = async (req, res, next) => {
-    res.json({ message: 'Get Product By ID' })
+    try {
+        const { productId } = req.params
+        const getProduct = await productService.getProductById(productId)
+        res.json(getProduct)
+
+    } catch (error) {
+        next(error)
+    }
 }
 
 

@@ -4,6 +4,14 @@ exports.getAllProduct = () => {
     return prisma.product.findMany()
 }
 
+exports.getProductById = (id) => {
+    return prisma.product.findFirst({
+        where: {
+            id
+        }
+    })
+}
+
 exports.createProduct = (name, img, detail, price, author, publisher, categoryId) => {
     return prisma.product.create({
         data: {
