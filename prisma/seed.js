@@ -14,12 +14,12 @@ const categoryData = [
 ]
 
 const cartData = [
-    { total: 500, userId: '65c78f55572d92531bb1958e' },
+    { userId: '65c78f55572d92531bb1958e' },
 ]
 
 const cartProductData = [
-    { quantity: 1, productId: '65cb2ca6552efee2f666c74d', cartId: '65cc3decc620b8e22ea49d05' },
-    { quantity: 1, productId: '65cb2ce1552efee2f666c74e', cartId: '65cc3decc620b8e22ea49d05' },
+    { quantity: 1, productId: '65cb2ca6552efee2f666c74d', cartId: '65cc813bc3758e616b0b9cba' },
+    { quantity: 1, productId: '65cb2ce1552efee2f666c74e', cartId: '65cc813bc3758e616b0b9cba' },
 ]
 
 const run = async () => {
@@ -36,9 +36,9 @@ const run = async () => {
     //     data: cartData
     // })
 
-    // await prisma.cart_Product.createMany({
-    //     data: cartProductData
-    // })
+    await prisma.cart_Product.createMany({
+        data: cartProductData
+    })
 }
 
 run()

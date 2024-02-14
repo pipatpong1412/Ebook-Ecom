@@ -61,3 +61,21 @@ exports.updateProfile = (userId, name, email, phone) => {
         }
     })
 }
+
+exports.createCartUser = async (userId) => {
+    const existingCart = await prisma.cart.findFirst({
+        where: {
+            userId: userId
+        }
+    });
+
+    if (!existingCart) {
+        return prisma.cart.create({
+            data: {
+                userId: userId
+            }
+        });
+    } else {
+        return
+    }
+}
