@@ -18,8 +18,8 @@ const cartData = [
 ]
 
 const cartProductData = [
-    { quantity: 1, productId: '65cb2ca6552efee2f666c74d', cartId: '65cc813bc3758e616b0b9cba' },
-    { quantity: 1, productId: '65cb2ce1552efee2f666c74e', cartId: '65cc813bc3758e616b0b9cba' },
+    { quantity: 0, cartId: '65cdeb7cc473b61d9f1e60a5' },
+    { quantity: 0, cartId: '65cde4c7454228a843144e8e' }
 ]
 
 const run = async () => {

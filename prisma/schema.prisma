@@ -80,7 +80,6 @@ model Product {
   category       Category         @relation(fields: [categoryId], references: [id])
   categoryId     String           @map("category_id") @db.ObjectId
   cart_product   Cart_Product[]
-  product_status Product_Status[]
 }
 
 model Category {
@@ -92,12 +91,5 @@ model Category {
 enum ProductStatus {
   PAID
   UNPAID
-  CANCELED
 }
 
-model Product_Status {
-  id        String        @id @default(auto()) @map("_id") @db.ObjectId
-  status    ProductStatus @default(UNPAID)
-  product   Product       @relation(fields: [productId], references: [id])
-  productId String        @map("product_id") @db.ObjectId
-}

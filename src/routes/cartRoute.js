@@ -4,6 +4,7 @@ const cartController = require('../controller/cartController')
 const router = express.Router()
 
 router.get('/mycart', authenticate, cartController.getCart)
+router.post('/add/:productId', authenticate, cartController.addProducttoCart)
 
 
 module.exports = router

@@ -76,6 +76,6 @@ exports.createCartUser = async (userId) => {
             }
         });
     } else {
-        return
+        return existingCart
     }
 }
