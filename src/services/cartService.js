@@ -8,8 +8,8 @@ exports.getMyCart = (id) => {
     })
 }
 
-exports.getCartProduct = async (id) => {
-    const existingCart = await prisma.cart_Product.findMany({
+exports.getCartProduct = (id) => {
+    const existingCart = prisma.cart_Product.findMany({
         where: {
             cartId: id
         }
@@ -29,4 +29,21 @@ exports.addProducttoCart = (id, productId) => {
             cartId: id
         }
     })
+}
+
+exports.delProductFromCart = async (cartId, productId) => {
+    const rs = await prisma.cart_Product.findMany({
+        where: {
+            cartId,
+            productId
+        }
+    });
+    
+    for (const cartProduct of rs) {
+        await prisma.cart_Product.delete({
+            where: {
+                id: cartProduct.id
+            }
+        });
+    }
 }

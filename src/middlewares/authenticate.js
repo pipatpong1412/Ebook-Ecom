@@ -24,6 +24,7 @@ const authenticate = async (req, res, next) => {
         if (!user) {
             return createError(400, 'User not found')
         }
+        delete user.password
 
         req.user = user
         next()

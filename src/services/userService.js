@@ -30,11 +30,31 @@ exports.getAllUser = () => {
     return prisma.user.findMany()
 }
 
-exports.deleteUesr = (id) => {
-    return prisma.user.delete({
+exports.deleteUesr = (userId) => {
+    const userCarts = prisma.cart.findMany({
         where: {
-            id
-        }
+            userId: userId,
+        },
+    });
+
+    for (const cart of userCarts) {
+        prisma.cart_Product.deleteMany({
+            where: {
+                cartId: cart.id,
+            },
+        });
+
+        prisma.cart.delete({
+            where: {
+                id: cart.id,
+            },
+        });
+    }
+
+    prisma.user.delete({
+        where: {
+            id: userId,
+        },
     })
 }
 
@@ -54,7 +74,7 @@ exports.updateProfile = (userId, name, email, phone) => {
         where: {
             id: userId
         },
-        data : {
+        data: {
             name,
             email,
             phone
