@@ -30,31 +30,11 @@ exports.getAllUser = () => {
     return prisma.user.findMany()
 }
 
-exports.deleteUesr = (userId) => {
-    const userCarts = prisma.cart.findMany({
+exports.deleteUesr = (id) => {
+    return prisma.user.delete({
         where: {
-            userId: userId,
-        },
-    });
-
-    for (const cart of userCarts) {
-        prisma.cart_Product.deleteMany({
-            where: {
-                cartId: cart.id,
-            },
-        });
-
-        prisma.cart.delete({
-            where: {
-                id: cart.id,
-            },
-        });
-    }
-
-    prisma.user.delete({
-        where: {
-            id: userId,
-        },
+            id
+        }
     })
 }
 
@@ -80,22 +60,4 @@ exports.updateProfile = (userId, name, email, phone) => {
             phone
         }
     })
-}
-
-exports.createCartUser = async (userId) => {
-    const existingCart = await prisma.cart.findFirst({
-        where: {
-            userId: userId
-        }
-    });
-
-    if (!existingCart) {
-        return prisma.cart.create({
-            data: {
-                userId: userId
-            }
-        });
-    } else {
-        return existingCart
-    }
 }

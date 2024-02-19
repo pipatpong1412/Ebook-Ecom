@@ -1,49 +1,32 @@
 const prisma = require('../config/prisma')
 
-exports.getMyCart = (id) => {
-    return prisma.cart.findFirst({
+exports.getMyCart = (userId) => {
+    return prisma.cart.findMany({
         where: {
-            userId: id
+            userId,
+            status: 'PENDING'
         }
     })
+
 }
 
-exports.getCartProduct = (id) => {
-    const existingCart = prisma.cart_Product.findMany({
-        where: {
-            cartId: id
-        }
-    })
-    if (existingCart.length === 0) {
-        return null
-    } else {
-        return existingCart
-    }
-}
 
-exports.addProducttoCart = (id, productId) => {
-    return prisma.cart_Product.create({
+exports.addProducttoCart = (userId, productId, price) => {
+    return prisma.cart.create({
         data: {
-            quantity: 1,
+            userId,
             productId,
-            cartId: id
+            price,
+            quantity: 1,
         }
     })
 }
 
-exports.delProductFromCart = async (cartId, productId) => {
-    const rs = await prisma.cart_Product.findMany({
+exports.delProductFromCart = async (id) => {
+    return await prisma.cart.delete({
         where: {
-            cartId,
-            productId
+            id
         }
-    });
-    
-    for (const cartProduct of rs) {
-        await prisma.cart_Product.delete({
-            where: {
-                id: cartProduct.id
-            }
-        });
-    }
+    })
+
 }

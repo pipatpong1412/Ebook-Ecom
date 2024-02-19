@@ -42,7 +42,6 @@ exports.login = async (req, res, next) => {
             return createError(400, 'Email or Password are invalid')
         }
 
-        await userService.createCartUser(isUserExist.id)
         const token = jwt.sign({ id: isUserExist.id }, process.env.SECRET_KEY, { expiresIn: process.env.EXPIRES_KEY })
 
         res.json({ token })

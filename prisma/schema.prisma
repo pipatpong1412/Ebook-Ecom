@@ -12,6 +12,16 @@ enum Role {
   USER
 }
 
+enum CartStatus {
+  PENDING
+  IN_PAYMENT
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+}
+
 model User {
   id       String  @id @default(auto()) @map("_id") @db.ObjectId
   role     Role    @default(USER)
@@ -19,77 +29,68 @@ model User {
   password String
   email    String  @unique
   phone    String?
-  cart     Cart[]
-  shelf    Shelf?
+  Shelf    Shelf[]
+  Cart     Cart[]
+
+  @@map("users")
 }
 
 model Cart {
-  id           String         @id @default(auto()) @map("_id") @db.ObjectId
-  Payment      Payment[]
-  user         User           @relation(fields: [userId], references: [id])
-  userId       String         @map("user_id") @db.ObjectId
-  Cart_Product Cart_Product[]
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  quantity  Int
+  price     Int
+  status    CartStatus @default(PENDING)
+  user      User       @relation(fields: [userId], references: [id])
+  userId    String     @map("user_id") @db.ObjectId
+  product   Product    @relation(fields: [productId], references: [id])
+  productId String     @map("product_id") @db.ObjectId
+
+  @@map("carts")
 }
 
 model Payment {
-  id       String   @id @default(auto()) @map("_id") @db.ObjectId
-  method   String
-  createAt DateTime @default(now()) @map("create_at")
-  cart     Cart     @relation(fields: [cartId], references: [id])
-  cartId   String   @map("cart_id") @db.ObjectId
-}
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  totalQuantity Int           @map("total_quantity")
+  totalPrice    Int           @map("total_price")
+  method        String
+  createdAt     DateTime      @default(now()) @map("created_at")
+  status        PaymentStatus @default(PENDING)
 
-model Shelf {
-  id            String       @id @default(auto()) @map("_id") @db.ObjectId
-  user          User         @relation(fields: [userId], references: [id])
-  userId        String       @unique @map("user_id") @db.ObjectId
-  paid_product  Paid_Product @relation(fields: [paidProductId], references: [id])
-  paidProductId String       @map("paid_product_id") @db.ObjectId
-}
-
-model Paid_Product {
-  id    String  @id @default(auto()) @map("_id") @db.ObjectId
-  url   Url     @relation(fields: [urlId], references: [id])
-  urlId String  @unique @map("url_id") @db.ObjectId
-  shelf Shelf[]
-}
-
-model Url {
-  id           String        @id @default(auto()) @map("_id") @db.ObjectId
-  link         String
-  paid_product Paid_Product?
-}
-
-model Cart_Product {
-  id        String  @id @default(auto()) @map("_id") @db.ObjectId
-  quantity  Int     @default(1)
-  product   Product @relation(fields: [productId], references: [id])
-  productId String  @map("product_id") @db.ObjectId
-  cart      Cart    @relation(fields: [cartId], references: [id])
-  cartId    String  @map("cart_id") @db.ObjectId
+  @@map("payments")
 }
 
 model Product {
-  id             String           @id @default(auto()) @map("_id") @db.ObjectId
-  name           String
-  img            String
-  detail         String
-  price          Int
-  author         String
-  publisher      String
-  category       Category         @relation(fields: [categoryId], references: [id])
-  categoryId     String           @map("category_id") @db.ObjectId
-  cart_product   Cart_Product[]
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  img        String
+  detail     String
+  price      Int
+  quantity   Int      @default(1)
+  author     String
+  publisher  String
+  url        String?
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId String   @map("category_id") @db.ObjectId
+  Shelf      Shelf[]
+  Cart       Cart[]
+
+  @@map("products")
 }
 
 model Category {
   id      String    @id @default(auto()) @map("_id") @db.ObjectId
   name    String
   product Product[]
+
+  @@map("categories")
 }
 
-enum ProductStatus {
-  PAID
-  UNPAID
-}
+model Shelf {
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String  @map("user_id") @db.ObjectId
+  product   Product @relation(fields: [productId], references: [id])
+  productId String  @map("product_id") @db.ObjectId
 
+  @@map("shelfs")
+}
