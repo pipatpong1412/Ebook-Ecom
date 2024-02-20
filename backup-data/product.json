@@ -7,7 +7,7 @@
     "quantity" : 1,
     "author": "Dr.Hiro",
     "publisher": "วีเลิร์น (WeLearn)",
-    "categoryId": "65d35995d6a647f9e1b81794"
+    "categoryId": "65d4cb76f66f0a82cc024e32"
   },
   {
     "name": "ATOMIC HABITS เพราะชีวิตดีได้กว่าที่เป็น",
@@ -17,7 +17,7 @@
     "quantity" : 1,
     "author": "James Clear",
     "publisher": "เชนจ์พลัส/Change+",
-    "categoryId": "65d35995d6a647f9e1b81794"
+    "categoryId": "65d4cb76f66f0a82cc024e32"
   },
   {
     "name": "คู่มือ Coding ภาษา Python ฉบับสมบูรณ์",
@@ -27,7 +27,7 @@
     "quantity" : 1,
     "author": "สุดา เธียรมนตรี",
     "publisher": "Infopress",
-    "categoryId": "65d35995d6a647f9e1b81794"
+    "categoryId": "65d4cb76f66f0a82cc024e32"
   },
   {
     "name": "คู่มือ coding ด้วย Visual Visual C# 2019 ฉบับผู้เริ่มต้น",
@@ -37,7 +37,7 @@
     "quantity" : 1,
     "author": "ศุภชัย สมพานิช",
     "publisher": "Infopress",
-    "categoryId": "65d35995d6a647f9e1b81794"
+    "categoryId": "65d4cb76f66f0a82cc024e32"
   },
   {
     "name": "นิยายเรื่องหนึ่งซึ่งยังไม่ถึงตอนจบ",
@@ -47,7 +47,7 @@
     "quantity" : 1,
     "author": "เซโอะ ไมโกะ",
     "publisher": "Bibli (บิบลิ)",
-    "categoryId": "65d35995d6a647f9e1b81794"
+    "categoryId": "65d4cb76f66f0a82cc024e32"
   },
   {
     "name": "นิยายเรื่องนี้ฉันขอไม่เล่น",
@@ -57,7 +57,7 @@
     "quantity" : 1,
     "author": "วาระวารี",
     "publisher": "เขียนฝัน",
-    "categoryId": "65d35995d6a647f9e1b81794"
+    "categoryId": "65d4cb76f66f0a82cc024e32"
   },
   {
     "name": "มันผิดรึไงถ้าใจอยากจะพบรักในดันเจี้ยน ภาคพิเศษ ซอร์ด โอราโทเรีย เล่ม 12 (นิยาย)",
@@ -67,7 +67,7 @@
     "quantity" : 1,
     "author": "ฟูจิโนะ โอโมริ",
     "publisher": "เซนชู/ZENSHU",
-    "categoryId": "65d35995d6a647f9e1b81794"
+    "categoryId": "65d4cb76f66f0a82cc024e32"
   },
   {
     "name": "สุดยอดคัมภีร์การเงินจากฮาร์วาร์ด ฉบับปรับปรุง",
@@ -77,7 +77,7 @@
     "quantity" : 1,
     "author": "Karen Berman",
     "publisher": "เอ็กซเปอร์เน็ท/expernetbooks",
-    "categoryId": "65d35995d6a647f9e1b81794"
+    "categoryId": "65d4cb76f66f0a82cc024e32"
   },
   {
     "name": "FAKE : การเงินลวงโลก",
@@ -87,7 +87,7 @@
     "quantity" : 1,
     "author": "Robert T. Kiyosaki",
     "publisher": "ซีเอ็ดยูเคชั่น/se-ed",
-    "categoryId": "65d35995d6a647f9e1b81794"
+    "categoryId": "65d4cb76f66f0a82cc024e32"
   },
   {
     "name": "วารสารคลินิก ฉ.383 พ.ย.59",
@@ -97,7 +97,7 @@
     "quantity" : 1,
     "author": "ไม่ทราบ",
     "publisher": "หมอชาวบ้าน",
-    "categoryId": "65d35995d6a647f9e1b81794"
+    "categoryId": "65d4cb76f66f0a82cc024e32"
   },
   {
     "name": "SLAVE ทาสสุดแกร่งแห่งหน่วยป้องกันอสูร เล่ม 3",
@@ -107,7 +107,7 @@
     "quantity" : 1,
     "author": "Yokei Takemura",
     "publisher": " สยามอินเตอร์คอมิกส์/Siam Inter Comics",
-    "categoryId": "65d35995d6a647f9e1b81794"
+    "categoryId": "65d4cb76f66f0a82cc024e32"
   },
   {
     "name": "ใช้คลื่นพลังบวกดึงดูดพลังสุข",
@@ -117,7 +117,7 @@
     "quantity" : 1,
     "author": "เว็กซ์ คิงส์",
     "publisher": "อมรินทร์ How to",
-    "categoryId": "65d35995d6a647f9e1b81794"
+    "categoryId": "65d4cb76f66f0a82cc024e32"
   },
   {
     "name": "Manifest: 7 ขั้นตอนสู่ทุกสิ่งที่ปรารถนา",
@@ -127,6 +127,6 @@
     "quantity" : 1,
     "author": "Roxie Nafousi",
     "publisher": "อมรินทร์ How to",
-    "categoryId": "65d35995d6a647f9e1b81794"
+    "categoryId": "65d4cb76f66f0a82cc024e32"
   }
 ]

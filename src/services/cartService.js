@@ -4,7 +4,7 @@ exports.getMyCart = (userId) => {
     return prisma.cart.findMany({
         where: {
             userId,
-            status: 'PENDING'
+            status: 'IN_PAYMENT'
         }
     })
 
@@ -18,6 +18,17 @@ exports.addProducttoCart = (userId, productId, price) => {
             productId,
             price,
             quantity: 1,
+        }
+    })
+}
+
+exports.updateCartProduct = (id) => {
+    return prisma.cart.update({
+        where: {
+            id
+        },
+        data: {
+            status: 'SUCCESS'
         }
     })
 }

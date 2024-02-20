@@ -1,3 +1,4 @@
+const { cart } = require('../config/prisma')
 const cartService = require('../services/cartService')
 
 exports.getCart = async (req, res, next) => {
@@ -23,10 +24,21 @@ exports.addProducttoCart = async (req, res, next) => {
     }
 }
 
+exports.uppdateCart = async (req, res, next) => {
+    try {
+        const { cartId } = req.params
+        const rs = await cartService.updateCartProduct(cartId)
+
+        res.json(rs)
+    } catch (error) {
+        next(error)
+    }
+}
+
 exports.delProductInCart = async (req, res, next) => {
     try {
         const { cartId } = req.params
-        
+
         const rs = await cartService.delProductFromCart(cartId)
         res.json(rs)
 

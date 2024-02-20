@@ -7,6 +7,8 @@ const authRoute = require('./src/routes/authRoute')
 const productRoute = require('./src/routes/productRoute')
 const categoryRoute = require('./src/routes/categoryRoute')
 const cartRoute = require('./src/routes/cartRoute')
+const paymentRoute = require('./src/routes/paymentRoute')
+const shelfRoute = require('./src/routes/shelfRoute')
 const app = express()
 const PORT = process.env.PORT
 
@@ -17,6 +19,8 @@ app.use('/auth', authRoute)
 app.use('/product', productRoute)
 app.use('/category', categoryRoute)
 app.use('/cart', cartRoute)
+app.use('/payment', paymentRoute)
+app.use('/shelf', shelfRoute)
 
 app.use(errorHandler)
 app.use('*', notFoundHandler)
