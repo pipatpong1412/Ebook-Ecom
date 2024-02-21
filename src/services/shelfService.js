@@ -8,8 +8,8 @@ exports.myShelf = (userId) => {
     })
 }
 
-exports.paidProduct = (userId, productId) => {
-    return prisma.cart.findFirst({
+exports.paidProduct = async (userId, productId) => {
+    return await prisma.cart.findFirst({
         where: {
             status: "SUCCESS",
             userId,

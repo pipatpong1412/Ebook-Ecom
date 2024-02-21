@@ -13,12 +13,9 @@ exports.getMyShelf = async (req, res, next) => {
 exports.createShelf = async (req, res, next) => {
     try {
         const { productId } = req.body
-        console.log(productId)
-        const isPaidProduct = await shelfService.paidProduct(req.user.id, productId)
-        if (isPaidProduct) {
-            const rs = await shelfService.createShelf(req.user.id, productId)
-            res.json(rs)
-        }
+        const rs = await shelfService.createShelf(req.user.id, productId)
+        res.json(rs)
+        // }
 
     } catch (error) {
         next(error)
