@@ -23,10 +23,11 @@ exports.getProductById = async (req, res, next) => {
 
 
 exports.createProduct = async (req, res, next) => {
-    const { name, img, detail, price, author, publisher, categoryId } = req.body
+    const { name, img, detail, price, author, publisher, url, categoryId } = req.body
+
 
     try {
-        const product = await productService.createProduct(name, img, detail, price, author, publisher, categoryId)
+        const product = await productService.createProduct(name, img, detail, price, author, publisher, url, categoryId)
         res.json(product)
 
     } catch (error) {
@@ -48,10 +49,10 @@ exports.deleteProduct = async (req, res, next) => {
 
 exports.updateProduct = async (req, res, next) => {
     const { productId } = req.params
-    const { name, img, detail, price, author, publisher, categoryId } = req.body
+    const { name, img, detail, price, author, publisher, url, categoryId } = req.body
 
     try {
-        const product = await productService.updateProduct(productId, name, img, detail, price, author, publisher, categoryId)
+        const product = await productService.updateProduct(productId, name, img, detail, price, author, publisher, url, categoryId)
         res.json(product)
 
     } catch (error) {

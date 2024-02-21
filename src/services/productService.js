@@ -12,7 +12,7 @@ exports.getProductById = (id) => {
     })
 }
 
-exports.createProduct = (name, img, detail, price, author, publisher, categoryId) => {
+exports.createProduct = (name, img, detail, price, author, publisher, url, categoryId) => {
     return prisma.product.create({
         data: {
             name,
@@ -21,6 +21,7 @@ exports.createProduct = (name, img, detail, price, author, publisher, categoryId
             price: Number(price),
             author,
             publisher,
+            url,
             categoryId
         }
     })
@@ -34,7 +35,7 @@ exports.deleteProduct = (productId) => {
     })
 }
 
-exports.updateProduct = (productId, name, img, detail, price, author, publisher, categoryId) => {
+exports.updateProduct = (productId, name, img, detail, price, author, publisher, url, categoryId) => {
     return prisma.product.update({
         where: {
             id: productId
@@ -46,6 +47,7 @@ exports.updateProduct = (productId, name, img, detail, price, author, publisher,
             price: Number(price),
             author,
             publisher,
+            url,
             categoryId
         }
     })
