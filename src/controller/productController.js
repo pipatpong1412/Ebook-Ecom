@@ -59,3 +59,13 @@ exports.updateProduct = async (req, res, next) => {
         next(error)
     }
 }
+
+exports.searchProduct = async (req, res, next) => {
+    try {
+        const product = req.query.product
+        const rs = await productService.getProductByName(product)
+        res.json(rs)
+    } catch (error) {
+        next(error)
+    }
+}

@@ -52,6 +52,13 @@ exports.delProductFromCart = async (id) => {
             where: {
                 id
             }
-        });
+        })
+        
+    } else {
+        return prisma.cart.delete({
+            where: {
+                id
+            }
+        })
     }
 }

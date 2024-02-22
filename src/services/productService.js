@@ -27,6 +27,16 @@ exports.createProduct = (name, img, detail, price, author, publisher, url, categ
     })
 }
 
+exports.getProductByName = (name) => {
+    return prisma.product.findMany({
+        where: {
+            name : {
+                contains: name
+            }
+        }
+    })
+}
+
 exports.deleteProduct = (productId) => {
     return prisma.product.delete({
         where: {
