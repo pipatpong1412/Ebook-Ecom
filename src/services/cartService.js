@@ -34,10 +34,24 @@ exports.updateCartProduct = (id) => {
 }
 
 exports.delProductFromCart = async (id) => {
-    return await prisma.cart.delete({
+    const rs = await prisma.payment.findFirst({
         where: {
-            id
+            cartId: id,
+            status: 'PENDING'
         }
-    })
+    });
 
+    if (rs) {
+        await prisma.payment.deleteMany({
+            where: {
+                cartId: id
+            }
+        });
+
+        return prisma.cart.delete({
+            where: {
+                id
+            }
+        });
+    }
 }
