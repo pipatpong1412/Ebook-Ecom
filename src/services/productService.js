@@ -31,7 +31,8 @@ exports.getProductByName = (name) => {
     return prisma.product.findMany({
         where: {
             name : {
-                contains: name
+                contains: name,
+                mode: 'insensitive'
             }
         }
     })
