@@ -10,6 +10,18 @@ exports.getAllProduct = async (req, res, next) => {
     }
 }
 
+exports.adminGetProduct = async (req, res, next) => {
+    const skip = req.query.skip
+
+    try {
+        const allproduct = await productService.adminGetProduct(skip)
+        res.json(allproduct)
+
+    } catch (error) {
+        next(error)
+    }
+}
+
 exports.getProductById = async (req, res, next) => {
     try {
         const { productId } = req.params

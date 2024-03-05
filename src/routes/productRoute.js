@@ -3,6 +3,7 @@ const router = express.Router()
 const productController = require('../controller/productController')
 
 router.get('/', productController.getAllProduct)
+router.get('/admin/', productController.adminGetProduct)
 router.get('/search', productController.searchProduct)
 router.post('/create', productController.createProduct)
 router.delete('/del/:productId', productController.deleteProduct)

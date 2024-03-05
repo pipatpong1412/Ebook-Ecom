@@ -4,6 +4,13 @@ exports.getAllProduct = () => {
     return prisma.product.findMany()
 }
 
+exports.adminGetProduct = (skip) => {
+    return prisma.product.findMany({
+        skip: +skip,
+        take: 4
+    })
+}
+
 exports.getProductById = (id) => {
     return prisma.product.findFirst({
         where: {
